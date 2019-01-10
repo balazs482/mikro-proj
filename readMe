@@ -1,0 +1,40 @@
+A projekt célja egy olyan program létrehozása volt,
+amely egy kamera segítségével objektumok színét állapítja meg.
+A projektet Rakonczai Róbert (H019UK) és Tóth Balázs (KX02OA) készítették.
+
+FONTOS:
+Ez a program egy Genius FaceCam 322-re lett finomhangolva, szabad szemmel, adott fényviszonyokkal.
+Nem helyettesít egy pontos színmérő eszközt.
+
+imageColorTest.py
+  - a fejlesztés során készült fájl
+  - képet olvas be, de a módszer egyezik
+  - a konstansok jelenlegi értékével nagyjából a kép egészét vizsgálja
+
+webcamColorDetector.py
+  - végleges kód
+  - imageColorTest.py továbbfejlesztése, csak...
+    - a webcamerának megfelelő beolvasás és megjelenítés
+    - finomított megállapítási mechanizmus
+    - a webcamerához igazított színtartományok
+  - a konstansok jelenlegi értékével a kép közepét vizsgálja (ez a megoldás hasznosabb valós felhasználásban)
+
+konstansok magyarázata:
+  - SIZEX, SIZEY: a kép dimenziói (sorrendben vízszintes és függőleges) (pixelben)
+  - START, STARTX, STARTY: az első és utolsó vizsgált pixel távolságát adja meg a szélektől számítva (pixelben)
+  - STEPS: a vizsgált pixelek lépésközét adja meg (pixelben)
+  - TRIGGERHELP: az 50%-nál mennyivel kevesebb adott színű pixel legyen elég arra, hogy az domináns színnek számítson (%-ban)
+    - (az abszolút % egyszerűbb lett volna, de így intuitívabban finomhangolható)
+  - PATH: a vizsgálandó kép elérési útvonalát adja meg
+
+HSV kód használatásnak előnye:
+  - az RGB (red-green-blue) kód az alapszínek arányát adja meg
+    - a szín sötétségét és élénkségét a három érték aránya adja meg
+  - a HSV (hue-saturation-value) segítségével kevesebb viszonyítást kell használni
+    - a fekete kiszűréséhez egyszerűen az kellett, hogy kellően sötét legyen a szín (alacsony value)
+    - ha nem fekete, és "kevés benne a szín" (alacsony saturation), akkor fehér vagy szürke lesz
+      - ha kellően világos (magas value), akkor fehér, különben szürke
+    - ha nem fekete, fehér és szürke, akkor biztosan valamelyik "tényleges szín", ezt egyszerűen a hue értékkel be lehet osztani
+      - a piros, a narancs, a sárga, a zöld, a cián, a kék, a lila és a magenta tartományai kerültek meghatározásra
+    - volt azonban két szín, ami jelentősen elkülönül a többitől, de nem csak a hue határozza meg
+      - a pink és a barna a piros, illetve a piros és a narancs bizonyos világosság-tartományaiban (value) kaptak helyet
