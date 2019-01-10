@@ -42,6 +42,7 @@ while (True):
 	#capture frame-by-frame
 	ret, frame=cap.read()
 	
+	#reset counter
 	colorCount = [0] * 13
 	
 	#analyse pixel-by-pixel
@@ -53,7 +54,7 @@ while (True):
 			pixel = frame[y,x]
 			px = rgb2hsv(pixel[2], pixel[1], pixel[0])
 
-			#points
+			#point on display
 			frame[y,x]=[255,0,0]
 			
 			#black?
