@@ -32,7 +32,7 @@ def rgb2hsv(r, g, b):
     return h,s*100,v*100
 
 #color arrays
-colorNames = ["black", "white", "grey", "red", "pink", "orange", "brown", "yellow", "green", "cyan", "blue", "pruple", "magenta"]
+colorNames = ['black', 'white', 'grey', 'red', 'pink', 'orange', 'brown', 'yellow', 'green', 'cyan', 'blue', 'pruple', 'magenta']
 colorCount = [0] * 13
 
 #start video capture
@@ -42,7 +42,6 @@ while (True):
 	#capture frame-by-frame
 	ret, frame=cap.read()
 	
-	#reset counter
 	colorCount = [0] * 13
 	
 	#analyse pixel-by-pixel
@@ -54,7 +53,7 @@ while (True):
 			pixel = frame[y,x]
 			px = rgb2hsv(pixel[2], pixel[1], pixel[0])
 
-			#point on display
+			#points on display
 			frame[y,x]=[255,0,0]
 			
 			#black?
@@ -111,7 +110,7 @@ while (True):
 					
 					
 	#number of pixels monitored
-	pixNum = ((SIZEX - STARTX*2) / STEPS) * ((SIZEY - STARTY*2) / STEPS)
+	pixNum = ((SIZEX - STARTX*2) / STEPS + 1) * ((SIZEY - STARTY*2) / STEPS + 1)
 
 	#output conclusion
 	colorful = True
@@ -128,7 +127,7 @@ while (True):
 		cv2.putText(img = frame, text = 'colorful', org = (int(20),int(SIZEY-20)), fontFace = cv2.FONT_HERSHEY_DUPLEX, fontScale = 0.8, color = (0, 255, 0))
 
 	#display exit option
-	cv2.putText(img = frame, text = "Q - exit", org = (int(SIZEX-80),int(SIZEY-20)), fontFace = cv2.FONT_HERSHEY_DUPLEX, fontScale = 0.5, color = (0, 255, 0))
+	cv2.putText(img = frame, text = 'Q - exit', org = (int(SIZEX-80),int(SIZEY-20)), fontFace = cv2.FONT_HERSHEY_DUPLEX, fontScale = 0.5, color = (0, 255, 0))
 	
 	#display the frame
 	cv2.imshow('frame', frame)
@@ -137,5 +136,6 @@ while (True):
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
 
+#closing
 cap.release()
 cv2.destroyAllWindows()
