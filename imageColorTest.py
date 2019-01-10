@@ -7,7 +7,6 @@ SIZEX = 500
 SIZEY = 500
 START = 30
 STEPS = 10
-TRIGGERHELP = 10
 PATH = '/home/pi/rPi/overAllColor/orangeM.jpeg'
 
 #atvaltas fgv
