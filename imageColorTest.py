@@ -31,7 +31,7 @@ def rgb2hsv(r, g, b):
     return h,s*100,v*100
 
 #szintombok
-colorNames = ["black", "white", "grey", "red", "pink", "orange", "brown", "yellow", "green", "cyan", "blue", "pruple", "magenta"]
+colorNames = ['black', 'white', 'grey', 'red', 'pink', 'orange', 'brown', 'yellow', 'green', 'cyan', 'blue', 'pruple', 'magenta']
 colorCount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 #kep betolt
@@ -46,7 +46,7 @@ for y in range (START,SIZEY-START+1,STEPS):
         pixel=img[y,x]
         px = rgb2hsv(pixel[2], pixel[1], pixel[0])
 
-        #megjeleno pontok
+        #pontok a kepre
         img[y,x]=[255,0,0]
         
         #fekete?
@@ -101,17 +101,16 @@ pixNum = ((SIZEX - START*2) / STEPS + 1) * ((SIZEY - START*2) / STEPS + 1)
 
 #lista kiiras
 for i in range (0,13):
-    print(colorNames[i], ": ", colorCount[i] * 100 / pixNum, "%")
-print(pixNum)
+    print colorNames[i], ': ', colorCount[i] * 100 / pixNum, '%'
 
 #konkluzio kiiras
 colorful = True
 for j in range (0,13):
     if colorCount[j] > pixNum / 2:
-        print(colorNames[j])
+        print '\n', colorNames[j]
         colorful = False
 if colorful:
-    print("colorful")
+    print '\ncolorful'
 
 #kepmegjelenites    
 cv2.imshow('imageWindow',img)
