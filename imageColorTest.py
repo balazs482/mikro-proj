@@ -46,7 +46,7 @@ for y in range (START,SIZEY-START+1,STEPS):
         pixel=img[y,x]
         px = rgb2hsv(pixel[2], pixel[1], pixel[0])
 
-        #pontok
+        #megjeleno pontok
         img[y,x]=[255,0,0]
         
         #fekete?
