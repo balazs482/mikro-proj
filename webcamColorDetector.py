@@ -8,7 +8,7 @@ SIZEY = 480
 STARTX = SIZEX / 2 - 30
 STARTY = SIZEY / 2 - 30
 STEPS = 3
-TRIGGERHELP = 30 #in percent
+TRIGGERHELP = 30
 
 #conversion function
 def rgb2hsv(r, g, b):
