@@ -36,7 +36,7 @@ colorNames = ['black', 'white', 'grey', 'red', 'pink', 'orange', 'brown', 'yello
 colorCount = [0] * 13
 
 #start video capture
-cap=cv2.VideoCapture(-1)
+cap = cv2.VideoCapture(-1)
 
 while (True):
 	#capture frame-by-frame
@@ -54,7 +54,7 @@ while (True):
 			px = rgb2hsv(pixel[2], pixel[1], pixel[0])
 
 			#points on display
-			frame[y,x]=[255,0,0]
+			frame[y,x] = [255,0,0]
 			
 			#black?
 			if px[2] < 29:
